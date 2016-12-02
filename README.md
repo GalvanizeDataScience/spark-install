@@ -175,7 +175,7 @@ export PYSPARK_DRIVER_PYTHON_OPTS="notebook --NotebookApp.open_browser=True --No
 ```
 will set up two environment variables for `pyspark` to execute `jupyter`.
 
-If you are running Vagrant or other virtualized environment and would like to forward jupiter notebook to a port on the host machine, set the NotebookApp.ip flag to `--NotebookApp.io='0.0.0.0'`
+If you are running Vagrant or other virtualized environment and would like to forward jupiter notebook to a port on the host machine, set the NotebookApp.ip flag to `--NotebookApp.ip='0.0.0.0'`
 
 The next line:
 ```bash
