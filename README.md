@@ -175,6 +175,8 @@ export PYSPARK_DRIVER_PYTHON_OPTS="notebook --NotebookApp.open_browser=True --No
 ```
 will set up two environment variables for `pyspark` to execute `jupyter`.
 
+Note: If you are installing Spark on a Virtual Machine and would like to access jupyter from your host browser, you should set the NotebookApp.ip flag to `--NotebookApp.ip='0.0.0.0'` so that your VM's jupyter server will accept external connections. You can then access jupyter notebook from the host machine on port 8888.
+
 The next line:
 ```bash
 ${SPARK_HOME}/bin/pyspark \
