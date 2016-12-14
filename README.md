@@ -15,19 +15,13 @@ We are going to install Spark+Hadoop. Use the Part that corresponds to your conf
 
 We'll do most of these steps from the command line. So, open a terminal and jump in !
 
-## 1.1. Installing Spark+Hadoop with no prior installation (using brew)
+## 1.1. Installing Spark+Hadoop on MAC with no prior installation (using brew)
 
 Be sure you have brew updated before starting: use `brew update` to update brew and brew packages to their last version.
 
 1\. Use `brew install hadoop` to install Hadoop (version 2.7.3 as of Nov 2016)
 
-2\. Check the hadoop installation directory by doing `ls /usr/local/Cellar/hadoop/2.7.3/libexec` which should output (approx.):
-
-```bash
-bin	etc	libexec	sbin	share
-```
-
-If brew has installed a more recent version of spark, you may identify your installation directory using the command:
+2\. Check the hadoop installation directory by using the command:
 
 ```bash
 brew info hadoop
@@ -35,15 +29,7 @@ brew info hadoop
 
 3\. Use `brew install apache-spark` to install Spark (version 2.0.2 as of Nov 2016)
 
-4\. Check the installation directory by doing `ls /usr/local/Cellar/apache-spark/2.0.2/libexec` which should output (approx.):
-
-```
-R         conf      jars        sbin
-RELEASE   data      licenses    work
-bin       examples  python      yarn
-```
-
-If you've installed a more recent version of spark, you may identify your installation directory using the command:
+4\. Check the installation directory by using the command:
 
 ```
 brew info apache-spark
@@ -100,10 +86,10 @@ To run Spark scripts you have to properly setup your shell environment: setting 
 
 **For a Mac/Brew installation**, copy/paste the following lines into your `~/.bash_profile`:
 ```bash
-export SPARK_HOME=`brew info apache-spark | grep /usr | cut -f 1 -d " "`/libexec
+export SPARK_HOME=`brew info apache-spark | grep /usr | tail -n 1 | cut -f 1 -d " "`/libexec
 export PYTHONPATH=$SPARK_HOME/python:$PYTHONPATH
 
-export HADOOP_HOME=`brew info hadoop | grep /usr | cut -f 1 -d " "`/libexec
+export HADOOP_HOME=`brew info hadoop | grep /usr | head -n 1 | cut -f 1 -d " "`/libexec
 export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native/:$LD_LIBRARY_PATH
 ```
 
@@ -145,7 +131,7 @@ export AWS_SECRET_ACCESS_KEY='put your secret access key here'
 
 Running Spark from a jupyter notebook can require you to launch jupyter with a specific setup so that it connects seamlessly with the Spark Driver. We recommend you create a shell script `jupyspark.sh` designed specifically for doing that.
 
-1\. Create a file called `jupyspark.sh` somewhere under your `$PATH`, or in a directory of your linking (I usually use a `scripts/` directory under my home directory). In this file, you'll copy/paste the following lines:
+1\. Create a file called `jupyspark.sh` somewhere under your `$PATH`, or in a directory of your liking (I usually use a `scripts/` directory under my home directory). In this file, you'll copy/paste the following lines:
 
 ```bash
 #!/bin/bash
@@ -162,7 +148,6 @@ ${SPARK_HOME}/bin/pyspark \
 --packages org.apache.hadoop:hadoop-aws:2.7.3
 ```
 
-**Note**: The versions are important here, and should be adapted to your installation.
 
 Save the file. Make it executable by doing `chmod 711 jupyspark.sh`. Now, whenever you want to launch a spark jupyter notebook run this script by typing `jupyspark.sh` in your terminal.
 
@@ -210,16 +195,9 @@ add specific packages to `pyspark` to load. These packages are necessary to acce
 2\. Now run this script. It will open a notebook home page in your browser. From there, create a new notebook and copy/pate the following commands in your notebook:
 
 ```python
-import pyspark as ps    # for the pyspark suite
-import warnings         # for displaying warning
+import pyspark as ps
 
-try:
-    # we try to create a SparkContext to work locally on all cpus available
-    sc = ps.SparkContext('local[4]')
-    print("Just created a SparkContext")
-except ValueError:
-    # give a warning if SparkContext already exists (for use inside pyspark)
-    warnings.warn("SparkContext already exists in this scope")
+spark = ps.sql.SparkSession.builder.getOrCreate()
 ```
 
 If you see a warning saying that the SparkContext already exists, you're good to go ! What these lines do is to try to connect to the Spark Driver by creating a new `SparkContext` instance (in the `try` section). If connection is already established, it should yield an error.
@@ -260,25 +238,28 @@ See the previous section 2.1 for an explanation of these values. The final line 
 
 ```python
 import pyspark as ps
+from random import random
 
 spark = ps.sql.SparkSession.builder \
-        .appName("df lecture") \
+        .appName("rdd test") \
         .getOrCreate()
 
-transactions_rdd = spark.sparkContext.textFile('s3n://sparkdatasets/transactions.txt')\
-                        .map(lambda s : s.encode("utf-8").split(';'))\
-                        .map(lambda (c0,c1,c2) : (int(c0),float(c1.lstrip("$")),c2))
+random.seed(1)
 
-print("Row count: {}".format(transactions_rdd.count()))
-print("First 5 rows:\n{}".format(transactions_rdd.take(5)))
+def sample(p):
+    x, y = random.random(), random.random()
+    return 1 if x*x + y*y < 1 else 0
+
+count = spark.sparkContext.parallelize(xrange(0, 10000000)).map(sample) \
+             .reduce(lambda a, b: a + b)
+
+print "Pi is (very) roughly %f" % (4.0 * count / 10000000)
 ```
 
 It should output the following result :
 
 ```
-Row count: 500000
-First 5 rows:
-[(815581247, 144.82, '2015-09-05'), (1534673027, 140.93, '2014-03-11'), (842468364, 104.26, '2014-05-06'), (1720001139, 194.6, '2015-08-24'), (1397891675, 307.72, '2015-09-25')]
+Pi is (very) roughly 3.141317
 ```
 
 2\. Create a python script called `testspark.py` and paste the lines above in it. Run this script from the command line using `localsparksubmit.sh testspark.py`. It should output the same result as above.
