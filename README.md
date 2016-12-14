@@ -89,7 +89,7 @@ To run Spark scripts you have to properly setup your shell environment: setting 
 export SPARK_HOME=`brew info apache-spark | grep /usr | tail -n 1 | cut -f 1 -d " "`/libexec
 export PYTHONPATH=$SPARK_HOME/python:$PYTHONPATH
 
-export HADOOP_HOME=`brew info hadoop | grep /usr | tail -n 1 | cut -f 1 -d " "`/libexec
+export HADOOP_HOME=`brew info hadoop | grep /usr | head -n 1 | cut -f 1 -d " "`/libexec
 export LD_LIBRARY_PATH=$HADOOP_HOME/lib/native/:$LD_LIBRARY_PATH
 ```
 
