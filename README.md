@@ -55,6 +55,7 @@ brew info apache-spark
 
 1\. Go to [Apache Spark Download page](http://spark.apache.org/downloads.html). Choose the latest Spark release (2.1.0), and the package type "Pre-built for Hadoop 2.7 and later". Click on the link "Download Spark" to get the `tgz` package of the latest Spark release. On Jan 2017 this file was `spark-2.1.0-bin-hadoop2.7.tgz` so we will be using that in the rest of these guidelines but feel free to adapt to your version.
 
+> ![spark installation website](images/spark-install-21.png)
 
 2\. Uncompress that file into `/usr/local` by typing:
 
