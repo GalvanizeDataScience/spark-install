@@ -7,14 +7,14 @@ Before you jump in those installation guidelines, you should have some software 
 | Name | Description | Installation Guide |
 | :-- | :-- | :-- |
 | Brew | The package installation soft for mac. Very helpful for this installation and in life in general. | [brew install](http://brew.sh/) |
-| Anaconda | A distribution of python, with packaged modules and libraries. | [anaconda install](https://docs.continuum.io/anaconda/install) |
+| Anaconda | A distribution of python, with packaged modules and libraries. **Note: we recommend installing Anaconda 2 (for python 2.7)** | [anaconda install](https://docs.continuum.io/anaconda/install) |
 | JDK 8 | Java Development Kit, used in both Hadoop and Spark. | just use `brew cask install java` |
 
 ### Requirements for Linux
 
 | Name | Description | Installation Guide |
 | :-- | :-- | :-- |
-| Anaconda | A distribution of python, with packaged modules and libraries. | [anaconda install](https://docs.continuum.io/anaconda/install) |
+| Anaconda | A distribution of python, with packaged modules and libraries. **Note: we recommend installing Anaconda 2 (for python 2.7)** | [anaconda install](https://docs.continuum.io/anaconda/install) |
 | JDK 8 | Java Development Kit, used in both Hadoop and Spark. | [install for linux](https://docs.oracle.com/javase/8/docs/technotes/guides/install/linux_jdk.html) |
 
 
