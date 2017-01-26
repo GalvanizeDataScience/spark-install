@@ -139,7 +139,7 @@ export AWS_SECRET_ACCESS_KEY='put your secret access key here'
 
 1\. Back to the command line, install py4j using `pip install py4j`.
 
-2\. To check if everything's ok, start an `ipython` console and type `import pyspark`. If it did not throw an error, then you are ready to go.
+2\. To check if everything's ok, start an `ipython` console and type `import pyspark`. This will do nothing in practice, that's ok: **if it did not throw any error, then you are good to go.**
 
 
 # 3. How to run Spark python scripts
