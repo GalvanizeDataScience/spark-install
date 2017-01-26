@@ -217,10 +217,9 @@ import pyspark as ps
 spark = ps.sql.SparkSession.builder.getOrCreate()
 ```
 
-If you see a warning saying that the SparkContext already exists, you're good to go ! What these lines do is to try to connect to the Spark Driver by creating a new `SparkContext` instance (in the `try` section). If connection is already established, it should yield an error.
-Using the `jupyspark.sh` script above, this `SparkContext` will have already been created for you. So this error should be catched, and the warning be issued.
+What these lines do is to try to connect to the Spark Driver by creating a new [`SparkSession` instance](http://spark.apache.org/docs/latest/api/java/index.html?org/apache/spark/sql/SparkSession.html).
 
-After this point, you can use `sc` as the `SparkContext` for reading files and doing Spark things.
+After this point, you can use `spark` as a unique entry point for [reading files and doing spark things](https://databricks.com/blog/2016/08/15/how-to-use-sparksession-in-apache-spark-2-0.html).
 
 
 ## 3.2. How to run Spark/Python from command line with via `spark-submit`
@@ -268,10 +267,10 @@ def sample(p):
     x, y = random.random(), random.random()
     return 1 if x*x + y*y < 1 else 0
 
-count = spark.sparkContext.parallelize(xrange(0, 10000000)).map(sample) \
+count = spark.sparkContext.parallelize(range(0, 10000000)).map(sample) \
              .reduce(lambda a, b: a + b)
 
-print "Pi is (very) roughly %f" % (4.0 * count / 10000000)
+print("Pi is (very) roughly {}}".format(4.0 * count / 10000000))
 ```
 
 It should output the following result :
