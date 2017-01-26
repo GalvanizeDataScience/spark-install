@@ -256,7 +256,7 @@ See the previous section 2.1 for an explanation of these values. The final line 
 
 ```python
 import pyspark as ps
-from random import random
+import random
 
 spark = ps.sql.SparkSession.builder \
         .appName("rdd test") \
