@@ -270,7 +270,7 @@ def sample(p):
 count = spark.sparkContext.parallelize(range(0, 10000000)).map(sample) \
              .reduce(lambda a, b: a + b)
 
-print("Pi is (very) roughly {}}".format(4.0 * count / 10000000))
+print("Pi is (very) roughly {}".format(4.0 * count / 10000000))
 ```
 
 It should output the following result :
