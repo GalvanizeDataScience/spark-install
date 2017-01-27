@@ -242,7 +242,7 @@ ${SPARK_HOME}/bin/spark-submit \
 $@
 ```
 
-See the previous section 2.1 for an explanation of these values. The final line here `$1` means that whatever you gave as an argument to this `localsparksubmit.sh` script will be used as a last argument in this command.
+See the previous section 2.1 for an explanation of these values. The final line here `$@` means that whatever you gave as an argument to this `localsparksubmit.sh` script will be used as a last argument in this command.
 
 2\. Whenever you want to run your script (called for instance `script.py`), you would do it by typing `localsparksubmit.sh script.py` from the command line. Make sure you put `localsparksubmit.sh` somewhere under your `$PATH`, or in a directory of your linking.
 
