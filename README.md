@@ -1,6 +1,6 @@
 ## Before doing anything [Requirements]
 
-Before you jump in those installation guidelines, you should have some software installed. Here's a table of all the software you need to install, plus the online tutorials to do so.
+Before you dive into these installation instructions, you need to have some software installed. Here's a table of all the software you need to install, plus the online tutorials to do so.
 
 ### Requirements for Mac
 
