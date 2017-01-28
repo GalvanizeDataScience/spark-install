@@ -21,7 +21,7 @@ Go to [http://aws.amazon.com/](http://aws.amazon.com/) and sign up:
 
 ## Part 2: Verify your AWS account
 
-- Log into the [Amazon EC2 Console](https://console.aws.amazon.com/ec2) and click on the "Launch an Instance" button. If you are taken to **Step 1: Choose an Amazon Machine Image (AMI)** then your account is verified and ready to go. If not, please follow any additional verification steps and reach out to your instructors on Slack (or by e-mail) for assistance if needed. 
+- Log into the [Amazon EC2 Console](https://console.aws.amazon.com/ec2) and click on the "Launch an Instance" button. If you are taken to **Step 1: Choose an Amazon Machine Image (AMI)** then your account is verified and ready to go. If not, please follow any additional verification steps indicated.
 
 ## Part 3: Notify Instructors
 
