@@ -2,7 +2,8 @@
 
 To use Spark on data that is too big to fit on our personal computers, we can use Amazon Web Services (AWS).
 
-It is essential to set up your AWS account *before* the workshop begins, because Amazon may take several hours (up to 24 hours in extreme cases) to approve your new AWS account.
+**If you are setting up AWS for a Galvanize workshop:**
+It is essential to set up your AWS account *before* the workshop begins. Amazon may take several hours (up to 24 hours in extreme cases) to approve your new AWS account, so you may not be able to participate if you wait until the day of the event.
 
 <br>
 
