@@ -1,6 +1,10 @@
 ## Before doing anything [Requirements]
 
-Before you jump in those installation guidelines, you should have some software installed. Here's a table of all the software you need to install, plus the online tutorials to do so.
+**Step 1: AWS Account Setup** Before installing Spark on your computer, be sure to [set up an Amazon Web Services account](setup_aws.md). If you already have an AWS account, make sure that you can log into the [AWS Console](https://console.aws.amazon.com) with your username and password.
+
+ * [AWS Setup Instructions](setup_aws.md)
+
+**Step 2: Software Installation** Before you dive into these installation instructions, you need to have some software installed. Here's a table of all the software you need to install, plus the online tutorials to do so.
 
 ### Requirements for Mac
 
