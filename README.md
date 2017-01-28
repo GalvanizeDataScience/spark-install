@@ -4,7 +4,7 @@
 
  * [AWS Setup Instructions](setup_aws.md)
 
-** Step 2: Before you dive into these installation instructions, you need to have some software installed. Here's a table of all the software you need to install, plus the online tutorials to do so.
+**Step 2: Software Installation** Before you dive into these installation instructions, you need to have some software installed. Here's a table of all the software you need to install, plus the online tutorials to do so.
 
 ### Requirements for Mac
 

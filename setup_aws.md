@@ -25,4 +25,4 @@ Go to [http://aws.amazon.com/](http://aws.amazon.com/) and sign up:
 
 ## Part 3: Notify Instructors
 
-- Please notify your instructors in the workshop Slack channel (or by e-mail) when you have successfully created your AWS account. If you have any questions about completing the process, please reach out to us and we will help.
+- If you are setting up Spark to prepare for a Galvanize workshop, please notify your instructors in the workshop Slack channel (or by e-mail) when you have successfully created your AWS account. If you have any questions about completing the process, please reach out to us and we will help.
