@@ -204,7 +204,7 @@ export PYTHONPATH=\"$SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME/python/:$PYTHONPA
 
 # Spark 2
 export PYSPARK_DRIVER_PYTHON=ipython
-export PATH=$SPARK_HOME/bin:$PATH
+export PATH=\$SPARK_HOME/bin:\$PATH
 alias pyspark=\"$SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME/bin/pyspark \
     --conf spark.sql.warehouse.dir='file:///tmp/spark-warehouse' \
     --packages com.databricks:spark-csv_2.11:1.5.0 \
