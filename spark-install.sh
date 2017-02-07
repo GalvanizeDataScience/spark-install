@@ -113,6 +113,7 @@ then
     then
         echo "Downloading JDK..."
         sudo add-apt-repository ppa:webupd8team/java
+        sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
         sudo apt-get update
         sudo apt-get install oracle-java8-installer
     fi
@@ -136,7 +137,7 @@ then
             # Remove the compressed file
             rm $HOME/$SPARK_FOLDER_NAME
             # Install py4j
-            $HOME/anaconda2/bin/pip install py4j
+            pip install py4j
             SUCCESSFUL_SPARK_INSTALL=1
         else
             echo 'ERROR: Spark MD5 Hash does not match'
@@ -168,7 +169,7 @@ then
             # Remove the compressed file
             rm $HOME/$SPARK_FOLDER_NAME
             # Install py4j
-            $HOME/anaconda2/bin/pip install py4j
+            pip install py4j
             SUCCESSFUL_SPARK_INSTALL=1
         else
             echo 'ERROR: Spark MD5 Hash does not match'
