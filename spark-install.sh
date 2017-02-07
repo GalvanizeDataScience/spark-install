@@ -6,7 +6,7 @@ echo "DOWNLOADING SPARK"
 
 # Specify your shell config file
 # Aliases will be appended to this file
-SHELL_PROFILE="$HOME/.zshrc"
+SHELL_PROFILE="$HOME/.bashrc"
 
 # Set the install location, $HOME is set by default
 SPARK_INSTALL_LOCATION=$HOME
