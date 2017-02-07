@@ -32,6 +32,8 @@ We are going to install Spark+Hadoop. Use the Part that corresponds to your conf
 
 We'll do most of these steps from the command line. So, open a terminal and jump in !
 
+**NOTE**: If you would prefer to jump right into using spark you can use the `spark-install.sh` script provided in this repo which will automatically perform the installation and set any necessary environment variables for you.  This script will install `spark-2.1.0-bin-hadoop2.7`.
+
 ## 1.1. Installing Spark+Hadoop on MAC with no prior installation (using brew)
 
 Be sure you have brew updated before starting: use `brew update` to update brew and brew packages to their last version.
