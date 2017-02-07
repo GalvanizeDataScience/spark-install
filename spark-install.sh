@@ -32,10 +32,10 @@ read -r -p "Is $SHELL_PROFILE your shell profile? [y/N] " response
 if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]
 then
     echo "All relevent aliases will be added to this file; THIS IS IMPORTANT!"
-    read -r -p "To verify, please type in the name of your shell profile:  " response
-    if [[ ! $response == $SHELL_PROFILE ]]
+    read -r -p "To verify, please type in the name of your shell profile (just the file name):  " response
+    if [[ ! $response == $(basename $SHELL_PROFILE) ]]
     then
-        echo "What you typed doesn't match $SHELL_PROFILE!"
+        echo "What you typed doesn't match $(basename $SHELL_PROFILE)!"
         echo "Please double check what shell profile you are using and alter spark-install accordingly!"
         exit 1
     fi
