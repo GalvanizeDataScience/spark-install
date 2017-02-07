@@ -6,7 +6,10 @@ echo "DOWNLOADING SPARK"
 
 # Specify your shell config file
 # Aliases will be appended to this file
-SHELL_PROFILE="$HOME/.bash_profile"
+SHELL_PROFILE="$HOME/.zshrc"
+
+# Set the install location, $HOME is set by default
+SPARK_INSTALL_LOCATION=$HOME
 
 # Specify the URL to download Spark from
 SPARK_URL=http://apache.mirrors.tds.net/spark/spark-2.1.0/spark-2.1.0-bin-hadoop2.7.tgz
@@ -124,24 +127,24 @@ SPARK_INSTALL_TRY=0
 
 if [[ $(uname -s) = "Darwin" ]]
 then
-    echo "\n\tDetected Mac OS X as the Operating System\n"
+    echo -e "\n\tDetected Mac OS X as the Operating System\n"
 
     while [ $SUCCESSFUL_SPARK_INSTALL -eq 0 ]
     do
-        curl $SPARK_URL > $HOME/$SPARK_FOLDER_NAME
+        curl $SPARK_URL > $SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME
         # Check MD5 Hash
-        if [[ $(openssl md5 $HOME/$SPARK_FOLDER_NAME | sed -e "s/^.* //") == "$SPARK_MD5" ]]
+        if [[ $(openssl md5 $SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME | sed -e "s/^.* //") == "$SPARK_MD5" ]]
         then
             # Unzip
-            tar -xzf $HOME/$SPARK_FOLDER_NAME -C $HOME
+            tar -xzf $SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME -C $SPARK_INSTALL_LOCATION
             # Remove the compressed file
-            rm $HOME/$SPARK_FOLDER_NAME
+            rm $SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME
             # Install py4j
             pip install py4j
             SUCCESSFUL_SPARK_INSTALL=1
         else
             echo 'ERROR: Spark MD5 Hash does not match'
-            echo "$(openssl md5 $HOME/$SPARK_FOLDER_NAME | sed -e "s/^.* //") != $SPARK_MD5"
+            echo "$(openssl md5 $SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME | sed -e "s/^.* //") != $SPARK_MD5"
             if [ $SPARK_INSTALL_TRY -lt 3 ]
             then
                 echo -e '\nTrying Spark Install Again...\n'
@@ -160,20 +163,20 @@ then
 
     while [ $SUCCESSFUL_SPARK_INSTALL -eq 0 ]
     do
-        curl $SPARK_URL > $HOME/$SPARK_FOLDER_NAME
+        curl $SPARK_URL > $SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME
         # Check MD5 Hash
-        if [[ $(md5sum $HOME/$SPARK_FOLDER_NAME | sed -e "s/ .*$//") == "$SPARK_MD5" ]]
+        if [[ $(md5sum $SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME | sed -e "s/ .*$//") == "$SPARK_MD5" ]]
         then
             # Unzip
-            tar -xzf $HOME/$SPARK_FOLDER_NAME -C $HOME
+            tar -xzf $SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME -C $SPARK_INSTALL_LOCATION
             # Remove the compressed file
-            rm $HOME/$SPARK_FOLDER_NAME
+            rm $SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME
             # Install py4j
             pip install py4j
             SUCCESSFUL_SPARK_INSTALL=1
         else
             echo 'ERROR: Spark MD5 Hash does not match'
-            echo "$(md5sum $HOME/$SPARK_FOLDER_NAME | sed -e "s/ .*$//") != $SPARK_MD5"
+            echo "$(md5sum $SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME | sed -e "s/ .*$//") != $SPARK_MD5"
             if [ $SPARK_INSTALL_TRY -lt 3 ]
             then
                 echo -e '\nTrying Spark Install Again...\n'
@@ -196,12 +199,13 @@ SPARK_FOLDER_NAME=$(echo $SPARK_FOLDER_NAME | sed -e "s/.tgz$//")
 
 echo "
 # Spark variables
-export SPARK_HOME=\"$HOME/$SPARK_FOLDER_NAME\"
-export PYTHONPATH=\"$HOME/$SPARK_FOLDER_NAME/python/:$PYTHONPATH\"
+export SPARK_HOME=\"$SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME\"
+export PYTHONPATH=\"$SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME/python/:$PYTHONPATH\"
 
 # Spark 2
 export PYSPARK_DRIVER_PYTHON=ipython
-alias pyspark=\"$HOME/$SPARK_FOLDER_NAME/bin/pyspark \
+export PATH=$SPARK_HOME/bin:$PATH
+alias pyspark=\"$SPARK_INSTALL_LOCATION/$SPARK_FOLDER_NAME/bin/pyspark \
     --conf spark.sql.warehouse.dir='file:///tmp/spark-warehouse' \
     --packages com.databricks:spark-csv_2.11:1.5.0 \
     --packages com.amazonaws:aws-java-sdk-pom:1.10.34 \
