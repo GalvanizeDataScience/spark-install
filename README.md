@@ -32,13 +32,13 @@ We are going to install Spark+Hadoop. Use the Part that corresponds to your conf
 
 We'll do most of these steps from the command line. So, open a terminal and jump in !
 
-**NOTE**: If you would prefer to jump right into using spark you can use the `spark-install.sh` script provided in this repo which will automatically perform the installation and set any necessary environment variables for you.  This script will install `spark-2.1.0-bin-hadoop2.7`.
+**NOTE**: If you would prefer to jump right into using spark you can use the `spark-install.sh` script provided in this repo which will automatically perform the installation and set any necessary environment variables for you.  This script will install `spark-2.2.0-bin-hadoop2.7`.
 
 ## 1.1. Installing Spark+Hadoop on MAC with no prior installation (using brew)
 
 Be sure you have brew updated before starting: use `brew update` to update brew and brew packages to their last version.
 
-1\. Use `brew install hadoop` to install Hadoop (version 2.7.3 as of Jan 2017)
+1\. Use `brew install hadoop` to install Hadoop (version 2.8.0 as of July 2017)
 
 2\. Check the hadoop installation directory by using the command:
 
@@ -46,7 +46,7 @@ Be sure you have brew updated before starting: use `brew update` to update brew 
 brew info hadoop
 ```
 
-3\. Use `brew install apache-spark` to install Spark (version 2.1.0 as of Jan 2017)
+3\. Use `brew install apache-spark` to install Spark (version 2.2.0 as of July 2017)
 
 4\. Check the installation directory by using the command:
 
@@ -59,40 +59,40 @@ brew info apache-spark
 
 ## 1.2. Installing Spark+Hadoop on Linux with no prior installation
 
-1\. Go to [Apache Spark Download page](http://spark.apache.org/downloads.html). Choose the latest Spark release (2.1.0), and the package type "Pre-built for Hadoop 2.7 and later". Click on the link "Download Spark" to get the `tgz` package of the latest Spark release. On Jan 2017 this file was `spark-2.1.0-bin-hadoop2.7.tgz` so we will be using that in the rest of these guidelines but feel free to adapt to your version.
+1\. Go to [Apache Spark Download page](http://spark.apache.org/downloads.html). Choose the latest Spark release (2.2.0), and the package type "Pre-built for Hadoop 2.7 and later". Click on the link "Download Spark" to get the `tgz` package of the latest Spark release. On July 2017 this file was `spark-2.2.0-bin-hadoop2.7.tgz` so we will be using that in the rest of these guidelines but feel free to adapt to your version.
 
-> ![spark installation website](images/spark-install-21.png)
+> ![spark installation website](images/spark-install-22.png)
 
 2\. Uncompress that file into `/usr/local` by typing:
 
 ```
-sudo tar xvzf spark-2.1.0-bin-hadoop2.7.tgz -C /usr/local/
+sudo tar xvzf spark-2.2.0-bin-hadoop2.7.tgz -C /usr/local/
 ```
 
 3\. Create a shorter symlink of the directory that was just created using:
 
 ```
-sudo ln -s /usr/local/spark-2.1.0-bin-hadoop2.7 /usr/local/spark
+sudo ln -s /usr/local/spark-2.2.0-bin-hadoop2.7.tgz /usr/local/spark
 ```
 
-4\. Go to [Apache Hadoop Download page](http://hadoop.apache.org/releases.html#Download). On the table above, click on the latest version below 3 (2.7.3 as of Nov 2016). Click as to download the *binary* version `tar.gz` archive, choose a mirror and download the file unto your computer.
+4\. Go to [Apache Hadoop Download page](http://hadoop.apache.org/releases.html#Download). On the table above, click on the latest version below 3 (2.8.1 as of July 2017). Click as to download the *binary* version `tar.gz` archive, choose a mirror and download the file unto your computer.
 
 5\. Uncompress that file into `/usr/local` by typing:
 
 ```
-sudo tar xvzf /path_to_file/hadoop-2.7.3.tar.gz -C /usr/local/
+sudo tar xvzf /path_to_file/hadoop-2.8.1.tar.gz -C /usr/local/
 ```
 
 6\. Create a shorter symlink of this directory using:
 
 ```
-sudo ln -s /usr/local/hadoop-2.7.3 /usr/local/hadoop
+sudo ln -s /usr/local/hadoop-2.8.1 /usr/local/hadoop
 ```
 
 
 ## 1.3. Using a prior installation of Spark+Hadoop
 
-We strongly recommend you update your installation to the must recent version of Spark. As of Jan 2017 we used Spark 2.1.0 and Hadoop 2.7.3.
+We strongly recommend you update your installation to the must recent version of Spark. As of July 2017 we used Spark 2.2.0 and Hadoop 2.8.0.
 
 If you want to use another version there, all you have to do is to locate your installation directories for Spark and Hadoop, and use that in the next section 2.1 for setting up your environment.
 
@@ -168,7 +168,7 @@ ${SPARK_HOME}/bin/pyspark \
 --conf spark.sql.warehouse.dir="file:///tmp/spark-warehouse" \
 --packages com.databricks:spark-csv_2.11:1.5.0 \
 --packages com.amazonaws:aws-java-sdk-pom:1.10.34 \
---packages org.apache.hadoop:hadoop-aws:2.7.3
+--packages org.apache.hadoop:hadoop-aws:2.8.0
 ```
 
 
@@ -209,7 +209,7 @@ The final 3 lines:
 ```bash
 --packages com.databricks:spark-csv_2.11:1.5.0 \
 --packages com.amazonaws:aws-java-sdk-pom:1.10.34 \
---packages org.apache.hadoop:hadoop-aws:2.7.3
+--packages org.apache.hadoop:hadoop-aws:2.8.0
 ```
 add specific packages to `pyspark` to load. These packages are necessary to access AWS S3 repositories from Spark/Python and to read csv files.
 
@@ -244,7 +244,7 @@ ${SPARK_HOME}/bin/spark-submit \
 --conf spark.sql.warehouse.dir="file:///tmp/spark-warehouse" \
 --packages com.databricks:spark-csv_2.11:1.5.0 \
 --packages com.amazonaws:aws-java-sdk-pom:1.10.34 \
---packages org.apache.hadoop:hadoop-aws:2.7.3 \
+--packages org.apache.hadoop:hadoop-aws:2.8.0 \
 $@
 ```
 
