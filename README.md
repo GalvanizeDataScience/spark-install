@@ -72,7 +72,7 @@ sudo tar xvzf spark-2.2.0-bin-hadoop2.7.tgz -C /usr/local/
 3\. Create a shorter symlink of the directory that was just created using:
 
 ```
-sudo ln -s /usr/local/spark-2.2.0-bin-hadoop2.7.tgz /usr/local/spark
+sudo ln -s /usr/local/spark-2.2.0-bin-hadoop2.7 /usr/local/spark
 ```
 
 4\. Go to [Apache Hadoop Download page](http://hadoop.apache.org/releases.html#Download). On the table above, click on the latest version below 3 (2.8.1 as of July 2017). Click as to download the *binary* version `tar.gz` archive, choose a mirror and download the file unto your computer.
